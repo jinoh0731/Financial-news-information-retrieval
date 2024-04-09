@@ -1,8 +1,9 @@
 # Financial-news-information-retrieval
 
 # Introduction
-
+ESG (Environmental Social Governance) investing has been gaining an increasing interest over the years as more people wish to contribute positively to the environment while mitigating portfolio risks and generating long-term portfolio value. With a growing interest in ESG investing, asset managers need to rapidly analyze news related to ESG topics to gain timely insights and make informed decisions. However, there are unclear standards in what is ESG-relevant news as the unstructured nature of news articles makes quickly extracting relevant information difficult. Given that the stock market reflects news very quickly, the ability to efficiently and accurately extract relevant ESG news not only becomes a critical competitive advantage, but it can also help asset managers construct better ESG focused portfolios.
 ## Purpose of the Project
+The goal of this project is to help asset managers quickly retrieve ESG-related news for a given industry to quickly get actionable insights when making investment decisions. This is done by utilizing four different information retrieval (IR) models and determine  the best IR model that can help asset managers get relevant ESG news for each industry in a simple manner.
 
 ## What is Information Retrieval (IR)?
 
@@ -17,10 +18,21 @@ Information Retrieval (IR) is the discipline of searching for information resour
 - **Relevance**: Relevance measures how well a document corresponds to a query's intent. It is a critical aspect in the effectiveness of an IR system.
 
 
-  
-# Dataset
+# Dataset (Tiffany to complete later)
 
-GPT4 for labels
+The dataset is comprised of three different parts:
+- **Perigon**: Perigon News Data is part of the broader set of services offered by Perigon, specifically focusing on delivering real-time, AI-enriched global news data. This service provides access to a vast and diverse range of news sources, encompassing over 100,000 sources worldwide. Dataset has 5,216 news articles with a range from 9/13/2022 to 9/8/2023.
+- **Sustainability Accounting Standards Board (SASB)**: SASB is a non-profit organization that develops and maintains industry-specific standards that guide companies' disclosure of financially material sustainability information to investors and other financial stakeholders. Data was webscraped from 67 industries that identified the ESG issues relevant to a particular industry. 
+- **GPT4 for labels**
+
+During data pre-processing, we applied Spacy to remove any stop-words to end up with the following word count:
+Graphic of Cleaned News Articles Word Count:
+![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295407/8b350c42-0a95-4301-8ebc-ea342e9cd199)
+
+Graphic of Cleaned SASB Query Word Count:
+![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295407/daa2be20-efa3-4e4d-84a5-88a3b4cce0e8)
+
+Notice that for certain situations, we do extend past the context length.
 
 #### Embeddings (for my reference...)
 An embedding is a sequence of numbers that represents the concepts within content such as natural language or code. Embeddings make it easy for machine learning models and other algorithms to understand the relationships between content and to perform tasks like clustering or retrieval. 
