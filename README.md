@@ -212,6 +212,8 @@ Over the course of this project, there are various improvements that can be made
 
 # Resource
 (Not sure if these are the resources we wanted to include as we have quite a few options):
-https://www.tensorflow.org/recommenders/examples/basic_retrieval
-https://www.kaggle.com/models/tensorflow/bert/frameworks/tensorFlow2/variations/en-uncased-l-12-h-768-a-12/versions/3?tfhub-redirect=true
-
+Two Tower Resources:
+- https://www.tensorflow.org/recommenders/examples/basic_retrieval
+MiniLM Resources:
+- https://arxiv.org/abs/2002.10957
+- https://github.com/microsoft/unilm/tree/master/minilm
