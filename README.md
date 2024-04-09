@@ -9,6 +9,7 @@ The goal of this project is to help asset managers quickly retrieve ESG-related 
 
 Information Retrieval (IR) is the discipline of searching for information resources relevant to an information need from a large collection of information resources. This typically involves retrieving documents or other content from a database, web, or any organized repository. The main goal of IR is to provide easy, fast, and effective access to large volumes of information.
 
+For this project, we are conducting IR to extract relevant ESG news data to reduce the noise found in large news datasets. This will help asset managers get news articles that are most ESG relevant, which will help asset managers make informed investment decisions in portfolio construction. 
 ### Key Components of IR
 
 - **Queries**: A query is a formal statement of information needs, such as a search string that users input into a search system.
@@ -18,12 +19,21 @@ Information Retrieval (IR) is the discipline of searching for information resour
 - **Relevance**: Relevance measures how well a document corresponds to a query's intent. It is a critical aspect in the effectiveness of an IR system.
 
 
-# Dataset (Tiffany to complete later)
+# Dataset (Incomplete)
 
 The dataset is comprised of three different parts:
 - **Perigon**: Perigon News Data is part of the broader set of services offered by Perigon, specifically focusing on delivering real-time, AI-enriched global news data. This service provides access to a vast and diverse range of news sources, encompassing over 100,000 sources worldwide. Dataset has 5,216 news articles with a range from 9/13/2022 to 9/8/2023.
-- **Sustainability Accounting Standards Board (SASB)**: SASB is a non-profit organization that develops and maintains industry-specific standards that guide companies' disclosure of financially material sustainability information to investors and other financial stakeholders. Data was webscraped from 67 industries that identified the ESG issues relevant to a particular industry. 
-- **GPT4 for labels**
+   - Relevant Columns:
+     - `title_and_content` – News article
+     - `Industry` – A categorical variable to represent the news article’s main industry. There are 67 categories.
+     - `url` – URL of the news article
+     - `articleId` – unique identifier within the Perigon News Data
+
+- **Sustainability Accounting Standards Board (SASB)**: SASB is a non-profit organization that develops and maintains industry-specific standards that guide companies' disclosure of financially material sustainability information to investors and other financial stakeholders. Data was webscraped from 67 industries that identified the ESG issues relevant to a particular industry. For each industry, there are 3-8 sub-topics that indicate what is considered ESG within that particular industry.
+- **GPT4 for labels**: To identify whether an article is ESG relevant or not, we needed to create ground truth labels for our dataset. We created a GPT4 pipeline using the following prompts:
+o	INSERT PROMPT
+GPT4 would then label an article as “Major”, “Minor” or “No” ESG relevant, which we used as ground truth for the rest of our dataset.
+
 
 During data pre-processing, we applied Spacy to remove any stop-words to end up with the following word count:
 Graphic of Cleaned News Articles Word Count:
@@ -32,7 +42,8 @@ Graphic of Cleaned News Articles Word Count:
 Graphic of Cleaned SASB Query Word Count:
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295407/daa2be20-efa3-4e4d-84a5-88a3b4cce0e8)
 
-Notice that for certain situations, we do extend past the context length.
+##### Side notes for removal later:
+Notice that for certain situations, we do extend past the context length. (Should we make a chart on the maximum context length sizes? Alternatively, there is the new suggestion of reducing context with ChatGPT)
 
 #### Embeddings (for my reference...)
 An embedding is a sequence of numbers that represents the concepts within content such as natural language or code. Embeddings make it easy for machine learning models and other algorithms to understand the relationships between content and to perform tasks like clustering or retrieval. 
@@ -64,7 +75,21 @@ The `text-embedding-3-small` model is the newest embedding model, released on Ja
 - **Scalability**: Due to its efficiency and compact nature, `text-embedding-3-small` can easily scale to handle large volumes of text without significant resource expenditure.
 
 ## 2. Two Towers
-(introduce two towers architecture)
+(introduce two towers architecture - may adjust later if it doesn't make sense)
+
+Two Towers is a dual encoder or bi-encoder architecture that employs two separate "towers" or neural networks to learn embeddings for queries and documents independently. The architecture allows for the nuanced capturing of semantic relationships between candiates and queries that is seen when we compute the cosine similarity score between each candidate and query pair.
+   - Key Components:
+      - Candidate: The candidate is the news article that excludes stop words.
+      - Query: The query is the concatenation of all the SASB topics for a specific industry after excluding stop words. We chose this query formation methodology to have the best approximation of what is considered ESG for a given industry, regardless if it is "Major" or "Minor" ESG related. There are a total of 67 queries to represent the 67 total possible industries in our dataset.
+      - Model will return a cosine similarity score that represents the model's predictions on what articles are considered ESG-relevant for a given query. We can use the model's output cosine similarity score to rank articles based on their similarity to a given query.
+
+- Benefits:
+   - With candidate and query each separatedly sent to different towers, we can increase the total amount of words sent to the encoder.
+   - Utilized encoder models with Two Towers are free-to-use.
+   - Architecture and encoder models are able to get fine-tune - DOUBLE CHECK FOR roBERTa
+
+Two Towers Example Diagram:
+![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295407/469541f4-c9ed-4d35-9c2d-d3d6ecf7adbb)
 
 ### 2-1 BERT (bert_en_uncased_L-12_H-768_A-12)
 
@@ -117,12 +142,44 @@ The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which 
 
 
 # Model Performance
+We evalulated model performance on the following metrics
+* Success at K - A metric to establish whether we get a hit/relevant ESG article within K. Measures whether the relevant document (or item) appears in the top K positions of the model's ranking.
+* Mean Reciprocal Rank (MRR) - MRR provides insight into the model's ability to return relevant items at higher ranks. It measures when does the first relevant ESG article appears. The closer this final number is to 1, the better the system is at giving you the right answers upfront.  
+* Precision at K - Measures the proportion of retrieved documents that are relevant among the top K documents retrieved. It's calculated by dividing the number of relevant documents in the top K by K.
+* Recall at K - Measures the proportion of relevant documents retrieved in the top K positions out of all relevant documents available. 
+* F1 Score at K - Combines precision and recall into a single metric, offering a more comprehensive evaluation of the model's performance. It helps balance the trade-off between precision and recall, ensuring that neither is disproportionately favored.
+
+Success at K:
+| K | Mini-LM | ADA -002 | Two Towers-BERT | Two Towers-roBERTa |
+|---|---------|----------|-----------------|--------------------|
+| 1 | 86.96%  | 88.52%   | 68.85%          | 70.49%             |
+| 2 | 94.57%  | 100.00%  | 83.61%          | 90.16%             |
+| 3 | 95.65%  | 100.00%  | 95.08%          | 95.08%             |
+| 4 | 96.74%  | 100.00%  | 96.72%          | 98.36%             |
+| 5 | 97.83%  | 100.00%  | 100.00%         | 100.00%            |
+
+We want to select the K value where all models have achieved over 85% to conduct our model comparision. In our table above, we see that we should select K = 3.
+
+| Model              | Precision at K=3 | Recall at K=3 | F1 at K=3 | MRR    |
+|--------------------|------------------|---------------|-----------|--------|
+| Mini-LM            | 79.71%           | 39.73%        | 45.56%    | 91.70% |
+| ADA -002           | 86.89%           | 27.37%        | 38.08%    | 94.26% |
+| Two Towers-BERT    | 71.58%           | 21.54%        | 30.11%    | 81.12% |
+| Two Towers-roBERTa | 79.23%           | 22.52%        | 33.21%    | 83.11% |
 
 # Code Demo
 
 # Gradio Demo
 
-# Limitation & Future Work
+# Limitation & Future Work (Verify certain aspects of this/Creating only a quick outline right now)
+Over the course of this project, there are various improvements that can be made:
+- Context length issue for certain encoder models (we need a context length graphic on repo)
+- Certain encoders cannot fine-tune and/or cost money to run, which is expensive
+- Dataset is skewed to have ESG related articles that reflect real news. Not sustainable over the long-period of time.
+- Two Tower Queries are too related to each other despite being in different industries
+- Subjective on what GPT considers ESG based on prompt, but the results may not reflect investor thoughts on ESG?
+- Future work: More fine-tuning, try different models?
+
 
 ### 1. Static Dataset
 
@@ -139,3 +196,7 @@ The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which 
 
 
 # Resource
+(Not sure if these are the resources we wanted to include as we have quite a few options):
+https://www.tensorflow.org/recommenders/examples/basic_retrieval
+https://www.kaggle.com/models/tensorflow/bert/frameworks/tensorFlow2/variations/en-uncased-l-12-h-768-a-12/versions/3?tfhub-redirect=true
+
