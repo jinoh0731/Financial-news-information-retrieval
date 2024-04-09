@@ -44,7 +44,26 @@ The `text-embedding-3-small` model is the newest embedding model, released on Ja
 - **Scalability**: Due to its efficiency and compact nature, `text-embedding-3-small` can easily scale to handle large volumes of text without significant resource expenditure.
 
 ## 2. Two Towers
-### 2-1 BERT
+(introduce two towers architecture)
+
+### 2-1 BERT (bert_en_uncased_L-12_H-768_A-12)
+
+BERT is a groundbreaking model in the field of natural language processing (NLP) introduced by researchers at Google. BERT's key innovation is its deep bidirectionality, allowing the model to understand the context of a word based on all of its surroundings (both left and right of the word).
+
+The `bert_en_uncased_L-12_H-768_A-12` model is a specific configuration of the BERT model developed by Google. This variant was introduced as part of BERT's initial release in October 2018. It is designed to handle tasks that require understanding the context of English language text in a way that is agnostic to the case of the input text (i.e., lowercased input).
+
+- **Configuration Details**:
+  - **L-12**: The model consists of 12 Transformer blocks (layers), providing a good balance between computational efficiency and modeling capability.
+  - **H-768**: Each layer has 768 hidden units, which contribute to the model's depth and capacity for language understanding.
+  - **A-12**: The model uses 12 attention heads, allowing it to focus on different parts of the sentence simultaneously, which enhances its ability to understand complex syntactic and semantic relationships in text.
+
+- **Uncased**: This model variant treats text in a case-insensitive manner, making it suitable for tasks where case information is not critical for understanding the content.
+
+- **Versatility in Applications**: Due to its architecture, this model is highly versatile and can be fine-tuned for a wide range of NLP tasks including sentiment analysis, named entity recognition, and question answering without substantial modifications to the core model structure.
+
+- **Pre-trained Knowledge**: As with all BERT models, `bert_en_uncased_L-12_H-768_A-12` benefits from pre-training on a large corpus, specifically the BooksCorpus (800M words) and English Wikipedia (2,500M words), which helps the model develop a broad understanding of the English language.
+
+
 ### 2-2 RoBERTa
 
 ## 3. MiniLM (all-MiniLM-L6-v2)
