@@ -167,6 +167,9 @@ We want to select the K value where all models have achieved over 85% to conduct
 | Two Towers-BERT    | 71.58%           | 21.54%        | 30.11%    | 81.12% |
 | Two Towers-roBERTa | 79.23%           | 22.52%        | 33.21%    | 83.11% |
 
+
+having more context length is impacting the model
+
 # Code Demo
 
 # Gradio Demo
