@@ -122,6 +122,20 @@ The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which 
 
 # Gradio Demo
 
-# Limitation & Future Word
+# Limitation & Future Work
+
+### 1. Static Dataset
+
+- **Outdated Information**: The dataset currently spans news articles from specific past dates (9/13/2022 to 9/8/2023). This approach does not capture recent events or developments, which are crucial for making informed investment decisions in real-time.
+
+- **Lack of Real-Time Data**: ESG investing and financial markets are highly sensitive to new information. This project only aims for building pipeline so that it could be utilized in many asset management or financial companies. Therefore, in order to utilize it in real-life, we would need another pipeline or method to web-scrape news articles in real-time and update database constantly to give the most current insights or reflect sudden market changes.
+
+- **Recommendations for Improvement**
+
+   To mitigate these limitations and enhance the effectiveness of our information retrieval system for ESG investing, we recommend the following enhancements:
+  - **Live Data Integration**: Implementing a system that continuously scrapes and integrates live financial news articles. This would ensure that the dataset remains up-to-date and relevant, allowing asset managers to access the latest information.
+  - **Automated Updates to ESG Criteria**: Regular updates to the SASB standards within our system to reflect the latest ESG criteria. This can be achieved by automating the scraping of SASB updates or integrating APIs that provide these updates.
+  - **Enhanced Data Processing Capabilities**: To handle the increased data volume from live scraping, enhancing our data processing and storage capabilities will be necessary. This may include more robust servers, faster processing algorithms, and more efficient data storage methods.
+
 
 # Resource
