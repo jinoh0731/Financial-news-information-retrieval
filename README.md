@@ -62,7 +62,20 @@ The `bert_en_uncased_L-12_H-768_A-12` model is a specific configuration of the B
 - **Pre-trained Knowledge**: As with all BERT models, `bert_en_uncased_L-12_H-768_A-12` benefits from pre-training on a large corpus, specifically the BooksCorpus (800M words) and English Wikipedia (2,500M words), which helps the model develop a broad understanding of the English language.
 
 
-### 2-2 RoBERTa
+### 2-2 RoBERTa (Robustly Optimized BERT Approach)
+
+![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/5cba2eed-751e-455f-9bcd-919a67b527cb)
+
+The RoBERTa model was proposed in RoBERTa: A Robustly Optimized BERT Pretraining Approach by Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, Veselin Stoyanov. RoBERTa is an optimized version of the BERT architecture, developed by Facebook AI in 2019. It builds upon BERT's methodology with changes in the pre-training procedure that significantly improve performance across a range of natural language processing (NLP) tasks. RoBERTa demonstrates that careful tuning of hyperparameters and training data size can lead to substantial improvements even within existing model architectures.
+
+- **Modified Training Approach**: Unlike BERT, RoBERTa does not use the Next Sentence Prediction (NSP) task during training. It was found that removing NSP, and training with longer sequences/more data improved performance.
+  
+- **Dynamic Masking**: RoBERTa applies the masking dynamically to the training data, which means the model sees different masked versions of the same text. This contrasts with BERT, which uses a static mask once created at the data pre-processing step.
+
+- **Larger Batch Sizes and More Data**: RoBERTa is trained with much larger batch sizes and on more data compared to BERT. For instance, it was trained on multiple datasets totaling over 160GB of uncompressed text.
+
+- **Byte-Pair Encoding (BPE)**: RoBERTa uses a byte-level BPE as a tokenizer, which allows it to handle a wider range of characters and to be more effective in multilingual environments.
+
 
 ## 3. MiniLM (all-MiniLM-L6-v2)
 The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which is designed to produce state-of-the-art sentence embeddings. This model is a smaller, faster version of BERT and is optimized for generating embeddings that are particularly useful for tasks involving semantic similarity.
