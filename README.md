@@ -66,7 +66,7 @@ The `bert_en_uncased_L-12_H-768_A-12` model is a specific configuration of the B
 
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/5cba2eed-751e-455f-9bcd-919a67b527cb)
 
-The RoBERTa model was proposed in RoBERTa: A Robustly Optimized BERT Pretraining Approach by Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, Veselin Stoyanov. RoBERTa is an optimized version of the BERT architecture, developed by Facebook AI in 2019. It builds upon BERT's methodology with changes in the pre-training procedure that significantly improve performance across a range of natural language processing (NLP) tasks. RoBERTa demonstrates that careful tuning of hyperparameters and training data size can lead to substantial improvements even within existing model architectures.
+The `RoBERTa` model was proposed in *RoBERTa: A Robustly Optimized BERT Pretraining Approach* by Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, Veselin Stoyanov. `RoBERTa` is an optimized version of the BERT architecture, developed by Facebook AI in 2019. It builds upon BERT's methodology with changes in the pre-training procedure that significantly improve performance across a range of natural language processing (NLP) tasks. RoBERTa demonstrates that careful tuning of hyperparameters and training data size can lead to substantial improvements even within existing model architectures.
 
 - **Modified Training Approach**: Unlike BERT, RoBERTa does not use the Next Sentence Prediction (NSP) task during training. It was found that removing NSP, and training with longer sequences/more data improved performance.
   
