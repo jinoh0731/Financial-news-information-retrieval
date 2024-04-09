@@ -26,6 +26,14 @@ GPT4 for labels
 An embedding is a sequence of numbers that represents the concepts within content such as natural language or code. Embeddings make it easy for machine learning models and other algorithms to understand the relationships between content and to perform tasks like clustering or retrieval. 
 
 # Models
+
+1. [Open-AI Text Embedding (text-embedding-3-small)](#1-open-ai-text-embedding-text-embedding-3-small)
+2. [Two Towers](#2-two-towers)
+   - [2.1 BERT (bert_en_uncased_L-12_H-768_A-12)](#2-1-bert-bert_en_uncased_l-12_h-768_a-12)
+   - [2.2 RoBERTa (Robustly Optimized BERT Approach)](#2-2-roberta-robustly-optimized-bert-approach)
+3. [MiniLM (all-MiniLM-L6-v2)](#3-minilm-all-minilm-l6-v2)
+
+
 ## 1. Open-AI Text Embedding (text-embedding-3-small)
 ![Screenshot 2024-04-08 at 8 04 17 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/1f626312-cdda-44d6-87d1-584013133037)
 
