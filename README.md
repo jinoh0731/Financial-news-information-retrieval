@@ -142,6 +142,17 @@ The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which 
 
 
 # Model Performance
+|                | Mini-LM                                        | Text-embedding-3                                          | BERT                                                                                                   | roBERTa                                         |
+|----------------|------------------------------------------------|-----------------------------------------------------|--------------------------------------------------------------------------------------------------------|-------------------------------------------------|
+| Context Length | 512                                            | 8191                                                | 512                                                                                                    | 512                                             |
+| Can Fine-Tune? | Yes                                            | No                                                 | Yes                                                                                                    | Yes                                             |
+| Cost           | Free                                           | $0.02 / 1M tokens                                   | Free                                                                                                   | Free                                            |
+| Source         | Microsoft                                      | OpenAI                                              | Google                                                                                                 | Facebook                                        |
+| Permissions    | Open-Source on Hugging Face                    | OpenAI API Key                                      | Open-Source on Kaggle/Tensorflow Hub                                                                  | Open-Source on Hugging Face                     |
+| Model Card Link| [Mini-LM](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) | [Text-embedding-3](https://platform.openai.com/docs/guides/embeddings/use-cases) | [BERT](https://www.kaggle.com/models/tensorflow/bert/tensorFlow2/en-uncased-l-12-h-768-a-12/3) | [roBERTa](https://huggingface.co/FacebookAI/roberta-base) |
+
+
+
 We evalulated model performance on the following metrics
 * Success at K - A metric to establish whether we get a hit/relevant ESG article within K. Measures whether the relevant document (or item) appears in the top K positions of the model's ranking.
 * Mean Reciprocal Rank (MRR) - MRR provides insight into the model's ability to return relevant items at higher ranks. It measures when does the first relevant ESG article appears. The closer this final number is to 1, the better the system is at giving you the right answers upfront.  
@@ -150,7 +161,7 @@ We evalulated model performance on the following metrics
 * F1 Score at K - Combines precision and recall into a single metric, offering a more comprehensive evaluation of the model's performance. It helps balance the trade-off between precision and recall, ensuring that neither is disproportionately favored.
 
 Success at K:
-| K | Mini-LM | ADA -002 | Two Towers-BERT | Two Towers-roBERTa |
+| K | Mini-LM | Text-embedding-3 | Two Towers-BERT | Two Towers-roBERTa |
 |---|---------|----------|-----------------|--------------------|
 | 1 | 86.96%  | 88.52%   | 68.85%          | 70.49%             |
 | 2 | 94.57%  | 100.00%  | 83.61%          | 90.16%             |
@@ -163,7 +174,7 @@ We want to select the K value where all models have achieved over 85% to conduct
 | Model              | Precision at K=3 | Recall at K=3 | F1 at K=3 | MRR    |
 |--------------------|------------------|---------------|-----------|--------|
 | Mini-LM            | 79.71%           | 39.73%        | 45.56%    | 91.70% |
-| ADA -002           | 86.89%           | 27.37%        | 38.08%    | 94.26% |
+| Text-embedding-3          | 86.89%           | 27.37%        | 38.08%    | 94.26% |
 | Two Towers-BERT    | 71.58%           | 21.54%        | 30.11%    | 81.12% |
 | Two Towers-roBERTa | 79.23%           | 22.52%        | 33.21%    | 83.11% |
 
