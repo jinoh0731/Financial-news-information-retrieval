@@ -142,14 +142,15 @@ The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which 
 
 
 # Model Performance
-|                | Mini-LM                                        | Text-embedding-3                                          | BERT                                                                                                   | roBERTa                                         |
+|                | Mini-LM                                        | Text-embedding-3                                    | BERT                                                                                                   | roBERTa                                         |
 |----------------|------------------------------------------------|-----------------------------------------------------|--------------------------------------------------------------------------------------------------------|-------------------------------------------------|
 | Context Length | 512                                            | 8191                                                | 512                                                                                                    | 512                                             |
-| Can Fine-Tune? | Yes                                            | No                                                 | Yes                                                                                                    | Yes                                             |
+| Can Fine-Tune? | Yes                                            | No                                                  | Yes                                                                                                    | Yes                                             |
 | Cost           | Free                                           | $0.02 / 1M tokens                                   | Free                                                                                                   | Free                                            |
 | Source         | Microsoft                                      | OpenAI                                              | Google                                                                                                 | Facebook                                        |
 | Permissions    | Open-Source on Hugging Face                    | OpenAI API Key                                      | Open-Source on Kaggle/Tensorflow Hub                                                                  | Open-Source on Hugging Face                     |
 | Model Card Link| [Mini-LM](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) | [Text-embedding-3](https://platform.openai.com/docs/guides/embeddings/use-cases) | [BERT](https://www.kaggle.com/models/tensorflow/bert/tensorFlow2/en-uncased-l-12-h-768-a-12/3) | [roBERTa](https://huggingface.co/FacebookAI/roberta-base) |
+
 
 
 
@@ -174,7 +175,7 @@ We want to select the K value where all models have achieved over 85% to conduct
 | Model              | Precision at K=3 | Recall at K=3 | F1 at K=3 | MRR    |
 |--------------------|------------------|---------------|-----------|--------|
 | Mini-LM            | 79.71%           | 39.73%        | 45.56%    | 91.70% |
-| Text-embedding-3          | 86.89%           | 27.37%        | 38.08%    | 94.26% |
+| Text-embedding-3   | 86.89%           | 27.37%        | 38.08%    | 94.26% |
 | Two Towers-BERT    | 71.58%           | 21.54%        | 30.11%    | 81.12% |
 | Two Towers-roBERTa | 79.23%           | 22.52%        | 33.21%    | 83.11% |
 
