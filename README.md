@@ -134,7 +134,6 @@ The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which 
 
 
 ## 3. Open-AI Text Embedding (text-embedding-3-small)
-![Screenshot 2024-04-08 at 8 04 17 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/1f626312-cdda-44d6-87d1-584013133037)
 
 The `text-embedding-3-small` model is the newest embedding model, released on January 25, 2024, by OpenAI to provide efficient, compact text embeddings suitable for a variety of tasks that require text representation. It is an upgrade over its predecessor, the text-embedding-ada-002 model which was released in December 2022.  This model is optimized for environments where model size and speed are critical, making it ideal for applications requiring low-latency processing.
 
@@ -149,6 +148,12 @@ The `text-embedding-3-small` model is the newest embedding model, released on Ja
 - **Speed and Efficiency**: The model's reduced size allows for faster processing times and lower memory usage, which is beneficial for applications running on limited resources or requiring real-time response.
 
 - **Scalability**: Due to its efficiency and compact nature, `text-embedding-3-small` can easily scale to handle large volumes of text without significant resource expenditure.
+- 
+![Screenshot 2024-04-09 at 9 45 32 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/1d7c119f-5d76-45e4-9b62-813d142e46f8)
+![Screenshot 2024-04-09 at 9 45 44 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/22dbed0e-431f-4ee9-94a3-558ccb1727a5)
+
+
+- **Affordable Price**: Reduced price compared to tge previous ADAv2 model, which is $0.0001 per 1000 tokens, whereas text-embeddings-3-small model requires $0.00002 per 1000 tokens, which is 5 times cheaper.
 
 
 
