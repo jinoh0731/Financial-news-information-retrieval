@@ -1,4 +1,5 @@
 # Financial-news-information-retrieval
+by Ji Noh and Tiffany Lee
 
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/123cded9-65f1-4e9c-b0db-3c55bc05dc7d)
 
@@ -75,16 +76,16 @@ Two Towers Example Diagram:
 
 ### 1-1 BERT (bert_en_uncased_L-12_H-768_A-12)
 
-BERT is a groundbreaking model in the field of natural language processing (NLP) introduced by researchers at Google. BERT's key innovation is its deep bidirectionality, allowing the model to understand the context of a word based on all of its surroundings (both left and right of the word).
+BERT (Bidirectional Encoder Representations from Transformers) is a model created by Google within the field of NLP. BERT's key innovation is its deep bidirectionality, enabling the model to grasp the context of a word by considering its surrounding words in both directions (left and right).
 
-The `bert_en_uncased_L-12_H-768_A-12` model is a specific configuration of the BERT model developed by Google. This variant is called BERT Miniatures, and it was introduced as part of BERT's initial release in October 2018. It is designed to handle tasks that require understanding the context of English language text in a way that is agnostic to the case of the input text (i.e., lowercased input). Also, the standard BERT is effective on a wide range of model sizes, beyond BERT-Base and BERT-Large, whereas smaller BERT models are intended for environments with restricted computational resources
+The bert_en_uncased_L-12_H-768_A-12 model was launched in October 2018 and has vocabulary extracted from Wikipedia. It is designed to handle tasks that require understanding the context of English language text in a case-agnostic manner, ideal for applications where text case does not influence meaning.
 
 - **Configuration Details**:
   - **L-12**: The model consists of 12 Transformer blocks (layers), providing a good balance between computational efficiency and modeling capability.
   - **H-768**: Each layer has 768 hidden units, which contribute to the model's depth and capacity for language understanding.
   - **A-12**: The model uses 12 attention heads, allowing it to focus on different parts of the sentence simultaneously, which enhances its ability to understand complex syntactic and semantic relationships in text.
-
-- **Uncased**: This model variant treats text in a case-insensitive manner, making it suitable for tasks where case information is not critical for understanding the content.
+  - **en**: This specifies the model is trained on English language data.
+  - **Uncased**: This model variant treats text in a case-insensitive manner, making it suitable for tasks where case information is not critical for understanding the content.
 
 - **Pre-trained Knowledge**: As with all BERT models, `bert_en_uncased_L-12_H-768_A-12` benefits from pre-training on a large corpus, specifically the BooksCorpus (800M words) and English Wikipedia (2,500M words), which helps the model develop a broad understanding of the English language.
 
@@ -93,7 +94,7 @@ The `bert_en_uncased_L-12_H-768_A-12` model is a specific configuration of the B
 
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/5cba2eed-751e-455f-9bcd-919a67b527cb)
 
-The `RoBERTa` model was proposed in *RoBERTa: A Robustly Optimized BERT Pretraining Approach* by Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, Veselin Stoyanov. `RoBERTa` is an optimized version of the BERT architecture, developed by Facebook AI in 2019. It builds upon BERT's methodology with changes in the pre-training procedure that significantly improve performance across a range of natural language processing (NLP) tasks. RoBERTa demonstrates that careful tuning of hyperparameters and training data size can lead to substantial improvements even within existing model architectures.
+The `RoBERTa` model was proposed in *RoBERTa: A Robustly Optimized BERT Pretraining Approach* by Yinhan Liu, Myle Ott, Naman Goyal, Jingfei Du, Mandar Joshi, Danqi Chen, Omer Levy, Mike Lewis, Luke Zettlemoyer, Veselin Stoyanov. `RoBERTa` is an optimized version of the BERT architecture, developed by Facebook AI in 2019. It builds upon BERT's methodology & architecture with changes in key hyperparameters, removing the next-sentence pretraining objective, and training with much larger mini-batches and learning rates.
 
 - **Modified Training Approach**: Unlike BERT, RoBERTa does not use the Next Sentence Prediction (NSP) task during training. It was found that removing NSP, and training with longer sequences/more data improved performance.
   
@@ -142,7 +143,7 @@ The `text-embedding-3-small` model is the newest embedding model, released on Ja
 ![Screenshot 2024-04-09 at 9 45 44 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/22dbed0e-431f-4ee9-94a3-558ccb1727a5)
 
 
-- **Affordable Price**: Reduced price compared to tge previous ADAv2 model, which is $0.0001 per 1000 tokens, whereas text-embeddings-3-small model requires $0.00002 per 1000 tokens, which is 5 times cheaper.
+- **Affordable Price**: Reduced price compared to previous ADAv2 model, which is $0.0001 per 1000 tokens, whereas text-embeddings-3-small model requires $0.00002 per 1000 tokens, which is 5 times cheaper.
 
 
 
@@ -160,7 +161,7 @@ The `text-embedding-3-small` model is the newest embedding model, released on Ja
 
 
 
-We evalulated model performance on the following metrics
+We evalulated model performance on the following metrics:
 - **Success at K** - A metric to establish whether we get a hit/relevant ESG article within K. Measures whether the relevant document (or item) appears in the top K positions of the model's ranking.
 - **Mean Reciprocal Rank (MRR)** - MRR provides insight into the model's ability to return relevant items at higher ranks. It measures when does the first relevant ESG article appears. The closer this final number is to 1, the better the system is at giving you the right answers upfront.
 - **Precision at K** - Measures the proportion of retrieved documents that are relevant among the top K documents retrieved. It's calculated by dividing the number of relevant documents in the top K by K.
@@ -223,11 +224,11 @@ However, it's important to note that the `Text-embedding-3` model, while highly 
 - **Impact**: Potential misalignment with market perceptions could lead to irrelevant or overlooked insights.
 
 #### 6. **Outdated Information**
-- **Problem**: The dataset currently spans news articles from specific past dates (9/13/2022 to 9/8/2023). This approach does not capture recent events or developments, which are crucial for making informed investment decisions in real-time. Moreover, the dataset is skewed to have ESG related articles that reflect real news. For instance, significant events such as the bankruptcy of Silicon Valley Bank and the Ohio railroad derailment within the dataset's timeframe, which led to having significant amount of article related to those issues.
+- **Problem**: The dataset currently spans news articles from specific past dates (9/13/2022 to 9/8/2023). This approach does not capture recent events or developments, which are crucial for making informed investment decisions in real-time. Moreover, the dataset is skewed to have ESG related articles that reflect real news. For instance, significant events such as the bankruptcy of Silicon Valley Bank and the Ohio railroad derailment within the dataset's timeframe, which led to having significant number of articles related to those issues during training and testing.
 - **Impact**: Utilizing a dataset that doesn't reflect the most current events limits the tool's ability to provide actionable insights that reflect the latest market conditions. This reliance on historical data may lead to strategic missteps, particularly in rapid-response scenarios where current information could dramatically alter investment decisions. Additionally, the focus on certain major events may bias the model's understanding and responsiveness to other equally significant ESG-related developments.
 
 #### 7. **Static Dataset**
-- **Problem**: ESG investing and financial markets are highly sensitive to new information. This project only aims for building pipeline so that it could be utilized in many asset management or financial companies. Therefore, in order to utilize it in real-life, we would need another pipeline or method to web-scrape news articles in real-time and update database constantly to give the most current insights or reflect sudden market changes.
+- **Problem**: ESG investing and financial markets are highly sensitive to new information. This project only aims for building pipeline so that it could be utilized in many asset management or financial companies. Therefore, in order to utilize it in real-life, we would need another pipeline or method to web-scrape news articles in real-time and update the database constantly to give the most current insights or reflect sudden market changes.
 - **Impact**: The inability to process and analyze real-time data severely limits the system's effectiveness in a field where timeliness can significantly influence the success of investment strategies. Without the capability to update content dynamically, the tool may provide outdated or irrelevant recommendations, thereby diminishing its utility in fast-paced financial environments where current information is crucial for maximizing ESG investment returns.
 
 ## Recommendations for Improvement
