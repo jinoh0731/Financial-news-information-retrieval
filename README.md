@@ -48,7 +48,7 @@ The dataset is comprised of three different parts:
 - **Sustainability Accounting Standards Board (SASB)**: SASB is a non-profit organization that develops and maintains industry-specific standards that guide companies' disclosure of financially material sustainability information to investors and other financial stakeholders. Data was webscraped from 67 industries that identified the ESG issues relevant to a particular industry. For each industry, there are 3-8 sub-topics that indicate what is considered ESG within that particular industry.
 - **GPT4 for labels**: To identify whether an article is ESG relevant or not, we needed to create ground truth labels for our dataset. We created a GPT4 pipeline using different prompts. GPT4 would then label an article as “Major”, “Minor” or “No” ESG relevant, which we later used as ground truth for the rest of our dataset by considering “Major” and “Minor” ESG labelled news as ESG relevant.
 
-[GPT4 Prompt Code Demo](#GPT4/gpt4-pipeline.ipynb)
+[GPT4 Prompt Code Demo](https://github.com/jinoh0731/Financial-news-information-retrieval/blob/main/GPT4/gpt4-pipeline.ipynb)
 
 
 During data pre-processing, we applied Spacy to remove any stop-words to end up with the following word count graphics:
