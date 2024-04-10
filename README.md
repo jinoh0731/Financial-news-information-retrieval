@@ -1,15 +1,27 @@
 # Financial-news-information-retrieval
 
 # Introduction
+
+## Problem Statement
 ESG (Environmental Social Governance) investing has been gaining an increasing interest over the years as more people wish to contribute positively to the environment while mitigating portfolio risks and generating long-term portfolio value. With a growing interest in ESG investing, asset managers need to rapidly analyze news related to ESG topics to gain timely insights and make informed decisions. However, there are unclear standards in what is ESG-relevant news as the unstructured nature of news articles makes quickly extracting relevant information difficult. Given that the stock market reflects news very quickly, the ability to efficiently and accurately extract relevant ESG news not only becomes a critical competitive advantage, but it can also help asset managers construct better ESG focused portfolios.
-## Purpose of the Project
-The goal of this project is to help asset managers quickly retrieve ESG-related news for a given industry to quickly get actionable insights when making investment decisions. This is done by utilizing four different information retrieval (IR) models and determine  the best IR model that can help asset managers get relevant ESG news for each industry in a simple manner.
+
+## Approach
+To address above challenges, this project employs advanced information retrieval (IR) models designed to efficiently sift through and accurately identify ESG-related news content. This approach could help asset managers quickly retrieve ESG-related news for a given industry to quickly get actionable insights when making investment decisions. We have selected four different information retrieval (IR) models and determine the best IR model that can help asset managers get relevant ESG news for each industry in a simple manner.
+
+1. [Two Towers](#1-two-towers)
+   - [1.1 BERT (bert_en_uncased_L-12_H-768_A-12)](#1-1-bert-bert_en_uncased_l-12_h-768_a-12)
+   - [1.2 RoBERTa (Robustly Optimized BERT Approach)](#1-2-roberta-robustly-optimized-bert-approach)
+2. [MiniLM (all-MiniLM-L6-v2)](#2-minilm-all-minilm-l6-v2)
+3. [Open-AI Text Embedding (text-embedding-3-small)](#3-open-ai-text-embedding-text-embedding-3-small)
+
+
 
 ## What is Information Retrieval (IR)?
 
 Information Retrieval (IR) is the discipline of searching for information resources relevant to an information need from a large collection of information resources. This typically involves retrieving documents or other content from a database, web, or any organized repository. The main goal of IR is to provide easy, fast, and effective access to large volumes of information.
 
 For this project, we are conducting IR to extract relevant ESG news data to reduce the noise found in large news datasets. This will help asset managers get news articles that are most ESG relevant, which will help asset managers make informed investment decisions in portfolio construction. 
+
 ### Key Components of IR
 
 - **Queries**: A query is a formal statement of information needs, such as a search string that users input into a search system.
@@ -50,31 +62,7 @@ An embedding is a sequence of numbers that represents the concepts within conten
 
 # Models
 
-1. [Open-AI Text Embedding (text-embedding-3-small)](#1-open-ai-text-embedding-text-embedding-3-small)
-2. [Two Towers](#2-two-towers)
-   - [2.1 BERT (bert_en_uncased_L-12_H-768_A-12)](#2-1-bert-bert_en_uncased_l-12_h-768_a-12)
-   - [2.2 RoBERTa (Robustly Optimized BERT Approach)](#2-2-roberta-robustly-optimized-bert-approach)
-3. [MiniLM (all-MiniLM-L6-v2)](#3-minilm-all-minilm-l6-v2)
-
-
-## 1. Open-AI Text Embedding (text-embedding-3-small)
-![Screenshot 2024-04-08 at 8 04 17 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/1f626312-cdda-44d6-87d1-584013133037)
-
-The `text-embedding-3-small` model is the newest embedding model, released on January 25, 2024, by OpenAI to provide efficient, compact text embeddings suitable for a variety of tasks that require text representation. It is an upgrade over its predecessor, the text-embedding-ada-002 model which was released in December 2022.  This model is optimized for environments where model size and speed are critical, making it ideal for applications requiring low-latency processing.
-
-![Screenshot 2024-04-08 at 8 08 01 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/1e44a974-0faf-4ce0-8f9c-b9f79635e447)
-
-- **Performance**:Comparing `text-embedding-ada-002` to `text-embedding-3-small`, the average score on a commonly used benchmark for multi-language retrieval (MIRACL) has increased from 31.4% to 44.0%, while the average score on a commonly used benchmark for English tasks (MTEB) has increased from 61.0% to 62.3%.
-
-- **Compact Design**: As indicated by the name, `text-embedding-3-small` is a smaller version of larger text embedding models. It is specifically optimized to maintain a balance between performance and resource efficiency.
-
-- **Efficient Text Embeddings**: This model generates embeddings that are smaller in size but still capture the essential semantic features needed for tasks such as text similarity, classification, and clustering.
-
-- **Speed and Efficiency**: The model's reduced size allows for faster processing times and lower memory usage, which is beneficial for applications running on limited resources or requiring real-time response.
-
-- **Scalability**: Due to its efficiency and compact nature, `text-embedding-3-small` can easily scale to handle large volumes of text without significant resource expenditure.
-
-## 2. Two Towers
+## 1. Two Towers
 (introduce two towers architecture - may adjust later if it doesn't make sense)
 
 Two Towers is a dual encoder or bi-encoder architecture that employs two separate "towers" or neural networks to learn embeddings for queries and documents independently. The architecture allows for the nuanced capturing of semantic relationships between candiates and queries that is seen when we compute the cosine similarity score between each candidate and query pair.
@@ -91,7 +79,7 @@ Two Towers is a dual encoder or bi-encoder architecture that employs two separat
 Two Towers Example Diagram:
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295407/469541f4-c9ed-4d35-9c2d-d3d6ecf7adbb)
 
-### 2-1 BERT (bert_en_uncased_L-12_H-768_A-12)
+### 1-1 BERT (bert_en_uncased_L-12_H-768_A-12)
 
 BERT is a groundbreaking model in the field of natural language processing (NLP) introduced by researchers at Google. BERT's key innovation is its deep bidirectionality, allowing the model to understand the context of a word based on all of its surroundings (both left and right of the word).
 
@@ -107,7 +95,7 @@ The `bert_en_uncased_L-12_H-768_A-12` model is a specific configuration of the B
 - **Pre-trained Knowledge**: As with all BERT models, `bert_en_uncased_L-12_H-768_A-12` benefits from pre-training on a large corpus, specifically the BooksCorpus (800M words) and English Wikipedia (2,500M words), which helps the model develop a broad understanding of the English language.
 
 
-### 2-2 RoBERTa (Robustly Optimized BERT Approach)
+### 1-2 RoBERTa (Robustly Optimized BERT Approach)
 
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/5cba2eed-751e-455f-9bcd-919a67b527cb)
 
@@ -122,7 +110,7 @@ The `RoBERTa` model was proposed in *RoBERTa: A Robustly Optimized BERT Pretrain
 - **Byte-Pair Encoding (BPE)**: RoBERTa uses a byte-level BPE as a tokenizer, which allows it to handle a wider range of characters and to be more effective in multilingual environments.
 
 
-## 3. MiniLM (all-MiniLM-L6-v2)
+## 2. MiniLM (all-MiniLM-L6-v2)
 The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which is designed to produce state-of-the-art sentence embeddings. This model is a smaller, faster version of BERT and is optimized for generating embeddings that are particularly useful for tasks involving semantic similarity.
 
 - **MiniLM Architecture**: MiniLM stands for Miniature Language Model. It focuses on reducing the model size while retaining a high level of performance. The model is designed by Microsoft and leverages knowledge distillation techniques where a smaller model is trained to reproduce the behavior of a much larger one.
@@ -138,6 +126,25 @@ The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which 
 - **Efficiency**: Due to its reduced size, all-MiniLM-L6-v2 is more efficient in terms of memory usage and speed. This makes it ideal for environments with limited computational resources or applications that require real-time processing.
 
 - **Performance**: Despite its smaller size, the model continues to deliver strong performance across a variety of NLP tasks, particularly those involving semantic understanding of text such as similarity measurement, clustering, and information retrieval.
+
+
+## 3. Open-AI Text Embedding (text-embedding-3-small)
+![Screenshot 2024-04-08 at 8 04 17 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/1f626312-cdda-44d6-87d1-584013133037)
+
+The `text-embedding-3-small` model is the newest embedding model, released on January 25, 2024, by OpenAI to provide efficient, compact text embeddings suitable for a variety of tasks that require text representation. It is an upgrade over its predecessor, the text-embedding-ada-002 model which was released in December 2022.  This model is optimized for environments where model size and speed are critical, making it ideal for applications requiring low-latency processing.
+
+![Screenshot 2024-04-08 at 8 08 01 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/1e44a974-0faf-4ce0-8f9c-b9f79635e447)
+
+- **Performance**:Comparing `text-embedding-ada-002` to `text-embedding-3-small`, the average score on a commonly used benchmark for multi-language retrieval (MIRACL) has increased from 31.4% to 44.0%, while the average score on a commonly used benchmark for English tasks (MTEB) has increased from 61.0% to 62.3%.
+
+- **Compact Design**: As indicated by the name, `text-embedding-3-small` is a smaller version of larger text embedding models. It is specifically optimized to maintain a balance between performance and resource efficiency.
+
+- **Efficient Text Embeddings**: This model generates embeddings that are smaller in size but still capture the essential semantic features needed for tasks such as text similarity, classification, and clustering.
+
+- **Speed and Efficiency**: The model's reduced size allows for faster processing times and lower memory usage, which is beneficial for applications running on limited resources or requiring real-time response.
+
+- **Scalability**: Due to its efficiency and compact nature, `text-embedding-3-small` can easily scale to handle large volumes of text without significant resource expenditure.
+
 
 
 
@@ -186,34 +193,77 @@ having more context length is impacting the model
 
 # Gradio Demo
 
-# Limitation & Future Work (Verify certain aspects of this/Creating only a quick outline right now)
-Over the course of this project, there are various improvements that can be made:
-- Context length issue for certain encoder models (we need a context length graphic on repo)
-- Certain encoders cannot fine-tune and/or cost money to run, which is expensive
-- Dataset is skewed to have ESG related articles that reflect real news. Not sustainable over the long-period of time.
-- Two Tower Queries are too related to each other despite being in different industries
-- Subjective on what GPT considers ESG based on prompt, but the results may not reflect investor thoughts on ESG?
-- Future work: More fine-tuning, try different models?
+# Limitation & Future Work for Improvement
+## Limitation
 
+#### 1. **Context Length Issue**
+- **Problem**: Some encoder models used in the project, especially all BERT-related models, have limitations on the maximum length of text they can process (context length). This restricts the amount of information these models can consider, potentially omitting crucial details from longer documents.
+- **Impact**: Important information may be truncated, leading to incomplete analysis of news articles.
 
-### 1. Static Dataset
+#### 2. **Cost and Accessibility of Encoder Models**
+- **Problem**: High-performing encoder model, in our case OpenAI Text Embedding, is not only costly to run but also lack the capability for fine-tuning in a cost-effective manner.
+- **Impact**: This limits the project’s scalability and increases operational costs, making it less accessible for smaller asset management firms.
 
-- **Outdated Information**: The dataset currently spans news articles from specific past dates (9/13/2022 to 9/8/2023). This approach does not capture recent events or developments, which are crucial for making informed investment decisions in real-time.
+#### 4. **Two Tower Queries Similarity**
+- **Problem**: Queries across different industries are too similar, reducing the effectiveness of industry-specific information retrieval.
+- **Impact**: Reduces the model’s utility in providing industry-specific insights, which are critical for targeted investment decisions.
 
-- **Lack of Real-Time Data**: ESG investing and financial markets are highly sensitive to new information. This project only aims for building pipeline so that it could be utilized in many asset management or financial companies. Therefore, in order to utilize it in real-life, we would need another pipeline or method to web-scrape news articles in real-time and update database constantly to give the most current insights or reflect sudden market changes.
+#### 5. **Subjectivity in Model Interpretations**
+- **Problem**: The determination of what is considered ESG-relevant by GPT models is based on the prompts used, which may not align with investors' actual criteria or thoughts on what constitutes ESG.
+- **Impact**: Potential misalignment with market perceptions could lead to irrelevant or overlooked insights.
 
-- **Recommendations for Improvement**
+#### 6. **Outdated Information**
+- **Problem**: The dataset currently spans news articles from specific past dates (9/13/2022 to 9/8/2023). This approach does not capture recent events or developments, which are crucial for making informed investment decisions in real-time. Moreover, the dataset is skewed to have ESG related articles that reflect real news. For instance, significant events such as the bankruptcy of Silicon Valley Bank and the Ohio railroad derailment within the dataset's timeframe, which led to having significant amount of article related to those issues.
+- **Impact**: Utilizing a dataset that doesn't reflect the most current events limits the tool's ability to provide actionable insights that reflect the latest market conditions. This reliance on historical data may lead to strategic missteps, particularly in rapid-response scenarios where current information could dramatically alter investment decisions. Additionally, the focus on certain major events may bias the model's understanding and responsiveness to other equally significant ESG-related developments.
 
-   To mitigate these limitations and enhance the effectiveness of our information retrieval system for ESG investing, we recommend the following enhancements:
-  - **Live Data Integration**: Implementing a system that continuously scrapes and integrates live financial news articles. This would ensure that the dataset remains up-to-date and relevant, allowing asset managers to access the latest information.
-  - **Automated Updates to ESG Criteria**: Regular updates to the SASB standards within our system to reflect the latest ESG criteria. This can be achieved by automating the scraping of SASB updates or integrating APIs that provide these updates.
-  - **Enhanced Data Processing Capabilities**: To handle the increased data volume from live scraping, enhancing our data processing and storage capabilities will be necessary. This may include more robust servers, faster processing algorithms, and more efficient data storage methods.
+#### 7. **Static Dataset**
+- **Problem**: ESG investing and financial markets are highly sensitive to new information. This project only aims for building pipeline so that it could be utilized in many asset management or financial companies. Therefore, in order to utilize it in real-life, we would need another pipeline or method to web-scrape news articles in real-time and update database constantly to give the most current insights or reflect sudden market changes.
+- **Impact**: The inability to process and analyze real-time data severely limits the system's effectiveness in a field where timeliness can significantly influence the success of investment strategies. Without the capability to update content dynamically, the tool may provide outdated or irrelevant recommendations, thereby diminishing its utility in fast-paced financial environments where current information is crucial for maximizing ESG investment returns.
 
+## Recommendations for Improvement
+
+#### 1. **Dynamic Data Acquisition**
+- **Solution**: Implement a system that continuously scrapes and integrates live financial news articles. This would ensure that the dataset remains up-to-date and relevant, allowing asset managers to access the latest information.
+- **Benefit**: Keeps the dataset current and maximizes the relevance of the information provided to asset managers, enhancing the accuracy and timeliness of investment decisions.
+
+#### 2. **Automated ESG Criteria Updates**
+- **Solution**: Regular updates to the SASB standards within our system to reflect the latest ESG criteria. This can be achieved by automating the scraping of SASB updates or integrating APIs that provide these updates.
+- **Benefit**: Ensures continuous alignment with the latest ESG standards and investor expectations, thereby improving the reliability and relevance of the information retrieval system.
+
+#### 3. **Enhanced Data Processing Capabilities**
+- **Solution**: To handle the increased data volume from live scraping, enhancing our data processing and storage capabilities will be necessary. This may include more robust servers, faster processing algorithms, and more efficient data storage methods.
+- **Benefit**: Supports scalable and efficient processing, enabling faster response times and handling larger data volumes without performance degradation. This improvement is crucial for maintaining high system performance even under increased load.
+
+#### 4. **Exploration of Alternative Models**
+- **Solution**: Test additional models that may offer better cost-efficiency, particularly those capable of handling longer context lengths or those offering more nuanced understanding of ESG topics.
+- **Benefit**: Could discover more effective or efficient ways to process and analyze data, potentially reducing operational costs and improving insight accuracy. This exploration may also uncover innovative approaches that better match the specific needs of asset managers in ESG investing.
+
+#### 5. **Model Fine-Tuning**
+- **Solution**: Fine-tune existing models on newly acquired, industry-specific datasets to improve their predictive accuracy and relevance to current ESG criteria.
+- **Benefit**: Fine-tuning models on specific datasets allows for more precise and tailored insights that can adapt to changes in market conditions or regulatory standards. This tailored approach enhances the model's utility and effectiveness in real-world applications, providing asset managers with more reliable and actionable data.
 
 # Resource
-(Not sure if these are the resources we wanted to include as we have quite a few options):
 Two Tower Resources:
 - https://www.tensorflow.org/recommenders/examples/basic_retrieval
+
+BERT: 
+- https://www.tensorflow.org/text/tutorials/classify_text_with_bert
+- https://www.kaggle.com/models/google/bert
+
+RoBERTa
+- https://huggingface.co/docs/transformers/en/model_doc/roberta
+
 MiniLM Resources:
 - https://arxiv.org/abs/2002.10957
 - https://github.com/microsoft/unilm/tree/master/minilm
+- https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2
+
+OpenAI Embedding Model:
+- https://platform.openai.com/docs/guides/embeddings/embedding-models
+- https://openai.com/blog/new-embedding-models-and-api-updates
+
+GPT4 API:
+- https://platform.openai.com/docs/models
+- https://platform.openai.com/docs/models/gpt-4-turbo-and-gpt-4
+
+
