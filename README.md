@@ -53,9 +53,11 @@ The dataset is comprised of three different parts:
 During data pre-processing, we applied Spacy to remove any stop-words to end up with the following word count graphics:
 
 Graphic of Cleaned News Articles Word Count:
+
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295407/8b350c42-0a95-4301-8ebc-ea342e9cd199)
 
 Graphic of Cleaned SASB Query Word Count:
+
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295407/daa2be20-efa3-4e4d-84a5-88a3b4cce0e8)
 
 # Models
