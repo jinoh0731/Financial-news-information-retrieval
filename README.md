@@ -161,13 +161,14 @@ The `text-embedding-3-small` model is the newest embedding model, released on Ja
 
 
 We evalulated model performance on the following metrics
-* Success at K - A metric to establish whether we get a hit/relevant ESG article within K. Measures whether the relevant document (or item) appears in the top K positions of the model's ranking.
-* Mean Reciprocal Rank (MRR) - MRR provides insight into the model's ability to return relevant items at higher ranks. It measures when does the first relevant ESG article appears. The closer this final number is to 1, the better the system is at giving you the right answers upfront.  
-* Precision at K - Measures the proportion of retrieved documents that are relevant among the top K documents retrieved. It's calculated by dividing the number of relevant documents in the top K by K.
-* Recall at K - Measures the proportion of relevant documents retrieved in the top K positions out of all relevant documents available. 
-* F1 Score at K - Combines precision and recall into a single metric, offering a more comprehensive evaluation of the model's performance. It helps balance the trade-off between precision and recall, ensuring that neither is disproportionately favored.
+- **Success at K** - A metric to establish whether we get a hit/relevant ESG article within K. Measures whether the relevant document (or item) appears in the top K positions of the model's ranking.
+- **Mean Reciprocal Rank (MRR)** - MRR provides insight into the model's ability to return relevant items at higher ranks. It measures when does the first relevant ESG article appears. The closer this final number is to 1, the better the system is at giving you the right answers upfront.
+- **Precision at K** - Measures the proportion of retrieved documents that are relevant among the top K documents retrieved. It's calculated by dividing the number of relevant documents in the top K by K.
+- **Recall at K** - Measures the proportion of relevant documents retrieved in the top K positions out of all relevant documents available.
+- **F1 Score at K** - Combines precision and recall into a single metric, offering a more comprehensive evaluation of the model's performance. It helps balance the trade-off between precision and recall, ensuring that neither is disproportionately favored.
 
-Success at K:
+### Success at K:
+
 | K | Mini-LM | Text-embedding-3 | Two Towers-BERT | Two Towers-roBERTa |
 |---|---------|----------|-----------------|--------------------|
 | 1 | 86.96%  | 88.52%   | 68.85%          | 70.49%             |
@@ -178,6 +179,8 @@ Success at K:
 
 We want to select the K value where all models have achieved over 85% to conduct our model comparision. In our table above, we see that we should select K = 3.
 
+### Precision, Recall, F1, and MRR
+
 | Model              | Precision at K=3 | Recall at K=3 | F1 at K=3 | MRR    |
 |--------------------|------------------|---------------|-----------|--------|
 | Mini-LM            | 79.71%           | 39.73%        | 45.56%    | 91.70% |
@@ -186,9 +189,11 @@ We want to select the K value where all models have achieved over 85% to conduct
 | Two Towers-roBERTa | 79.23%           | 22.52%        | 33.21%    | 83.11% |
 
 
-having more context length is impacting the model
+### Final Model Selection - `Text-embedding-3`
+After thorough evaluation of our models using metrics such as Success at K, Precision, Recall, F1 Score, and Mean Reciprocal Rank (MRR), we selected the `Text-embedding-3` model for our application. Our decision was driven by its superior performance in MRR, where it led with 94.26%, suggesting its effectiveness in ranking relevant ESG articles higher in search results, a critical feature for real-time decision-making in asset management.
 
-# Code Demo
+Additionally, the Text-embedding-3 model supports up to 8191 tokens, significantly more than the 512 tokens limit of other tested models. This capability is particularly important given our analysis which showed that a substantial proportion of our articles exceeded the 512-token threshold. The extended context length allowed by Text-embedding-3 ensures that more comprehensive information from longer articles is considered, enhancing the accuracy and relevance of the retrieved articles.
+
 
 # Gradio Demo
 
