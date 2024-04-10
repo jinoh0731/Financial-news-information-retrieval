@@ -34,10 +34,10 @@ For this project, we are conducting IR to extract relevant ESG news data to redu
 - **Relevance**: Relevance measures how well a document corresponds to a query's intent. It is a critical aspect in the effectiveness of an IR system. For our project, we need to determine whether the retrieved results are ESG relevant to a given query, so we will measure our models performances through Success at K and Mean Reciprocal Rank (MRR) to determine how well is a model able to provide relevant information.
 
 
-# Dataset (Incomplete)
+# Dataset
 
 The dataset is comprised of three different parts:
-- **Perigon**: Perigon News Data is part of the broader set of services offered by Perigon, specifically focusing on delivering real-time, AI-enriched global news data. This service provides access to a vast and diverse range of news sources, encompassing over 100,000 sources worldwide. Dataset has 5,216 news articles with a range from 9/13/2022 to 9/8/2023.
+- **Perigon**: Perigon News Data is part of the broader set of services offered by Perigon, specifically focusing on delivering real-time, AI-enriched global news data. This service provides access to a vast and diverse range of news sources, encompassing over 100,000 sources worldwide. Dataset has 5,216 news articles with a range from 9/13/2022 to 9/8/2023, which covers 67 industries.
    - Relevant Columns:
      - `title_and_content` – News article
      - `Industry` – A categorical variable to represent the news article’s main industry. There are 67 categories.
@@ -45,41 +45,28 @@ The dataset is comprised of three different parts:
      - `articleId` – unique identifier within the Perigon News Data
 
 - **Sustainability Accounting Standards Board (SASB)**: SASB is a non-profit organization that develops and maintains industry-specific standards that guide companies' disclosure of financially material sustainability information to investors and other financial stakeholders. Data was webscraped from 67 industries that identified the ESG issues relevant to a particular industry. For each industry, there are 3-8 sub-topics that indicate what is considered ESG within that particular industry.
-- **GPT4 for labels**: To identify whether an article is ESG relevant or not, we needed to create ground truth labels for our dataset. We created a GPT4 pipeline using the following prompts:
-o	INSERT PROMPT
-GPT4 would then label an article as “Major”, “Minor” or “No” ESG relevant, which we used as ground truth for the rest of our dataset.
+- **GPT4 for labels**: To identify whether an article is ESG relevant or not, we needed to create ground truth labels for our dataset. We created a GPT4 pipeline using different prompts. GPT4 would then label an article as “Major”, “Minor” or “No” ESG relevant, which we later used as ground truth for the rest of our dataset by considering “Major” and “Minor” ESG labelled news as ESG relevant.
 
 [GPT4 Prompt Code Demo](#GPT4/gpt4-pipeline.ipynb)
 
 
-During data pre-processing, we applied Spacy to remove any stop-words to end up with the following word count:
+During data pre-processing, we applied Spacy to remove any stop-words to end up with the following word count graphics:
+
 Graphic of Cleaned News Articles Word Count:
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295407/8b350c42-0a95-4301-8ebc-ea342e9cd199)
 
 Graphic of Cleaned SASB Query Word Count:
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295407/daa2be20-efa3-4e4d-84a5-88a3b4cce0e8)
 
-##### Side notes for removal later:
-Notice that for certain situations, we do extend past the context length. (Should we make a chart on the maximum context length sizes? Alternatively, there is the new suggestion of reducing context with ChatGPT)
-
-#### Embeddings (for my reference...)
-An embedding is a sequence of numbers that represents the concepts within content such as natural language or code. Embeddings make it easy for machine learning models and other algorithms to understand the relationships between content and to perform tasks like clustering or retrieval. 
-
 # Models
 
 ## 1. Two Towers
-(introduce two towers architecture - may adjust later if it doesn't make sense)
 
-Two Towers is a dual encoder or bi-encoder architecture that employs two separate "towers" or neural networks to learn embeddings for queries and documents independently. The architecture allows for the nuanced capturing of semantic relationships between candiates and queries that is seen when we compute the cosine similarity score between each candidate and query pair.
+Two Towers is a dual encoder or bi-encoder architecture that employs two separate "towers" or neural networks to learn embeddings for queries and documents/candidates independently. The architecture allows for the nuanced capturing of semantic relationships between candiates and queries that is seen when we compute the cosine similarity score between each candidate and query pair, which allows us to get final rank values.
    - Key Components:
       - Candidate: The candidate is the news article that excludes stop words.
       - Query: The query is the concatenation of all the SASB topics for a specific industry after excluding stop words. We chose this query formation methodology to have the best approximation of what is considered ESG for a given industry, regardless if it is "Major" or "Minor" ESG related. There are a total of 67 queries to represent the 67 total possible industries in our dataset.
       - Model will return a cosine similarity score that represents the model's predictions on what articles are considered ESG-relevant for a given query. We can use the model's output cosine similarity score to rank articles based on their similarity to a given query.
-
-- Benefits:
-   - With candidate and query each separatedly sent to different towers, we can increase the total amount of words sent to the encoder.
-   - Utilized encoder models with Two Towers are free-to-use.
-   - Architecture and encoder models are able to get fine-tune - DOUBLE CHECK FOR roBERTa
 
 Two Towers Example Diagram:
 ![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295407/469541f4-c9ed-4d35-9c2d-d3d6ecf7adbb)
