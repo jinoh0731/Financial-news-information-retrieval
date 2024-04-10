@@ -112,7 +112,7 @@ The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which 
 - **Training Objective and Application:**
 
   - **BERT**: Trained on a large corpus with objectives like Masked Language Modeling (MLM) and Next Sentence Prediction (NSP). It is primarily designed for improving performance on a variety of NLP tasks such as question answering and natural language inference by fine-tuning.
-  - **MiniLM**: While also trained with MLM, MiniLM models are particularly fine-tuned for producing sentence embeddings. They are optimized through knowledge distillation from a teacher model (usually a larger BERT or RoBERTa model) and are specifically fine-tuned to improve performance in tasks where sentence-level embeddings are used directly, like semantic textual similarity.
+  - **MiniLM**: While also trained with MLM, MiniLM models are particularly fine-tuned for producing sentence embeddings. They are optimized through knowledge distillation from a teacher model (usually a larger BERT or RoBERTa model) and are specifically fine-tuned to improve performance in tasks where sentence-level embeddings are used directly, like semantic textual similarity. Especially it utilized cosine similarity from each possible sentence pairs from the batch, then applied the cross entropy loss by comparing with true pairs.
 
 
 - **Layer Count (L6)**: The "L6" in the model name indicates that it utilizes 6 transformer layers, which is fewer than the larger models like BERT-base or RoBERTa which typically use 12 layers. This reduction in layers significantly decreases the computational resources needed without a substantial drop in performance.
