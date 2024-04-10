@@ -21,17 +21,17 @@ To address above challenges, this project employs advanced information retrieval
 
 ## What is Information Retrieval (IR)?
 
-Information Retrieval (IR) is the discipline of searching for information resources relevant to an information need from a large collection of information resources. This typically involves retrieving documents or other content from a database, web, or any organized repository. The main goal of IR is to provide easy, fast, and effective access to large volumes of information.
+Information Retrieval (IR) is the discipline of searching for relevant information from a very large collection of resources. This typically involves retrieving documents or other content from a database, web, or any organized repository. The main goal of IR is to provide easy, fast, and efficient access to large volumes of information by providing the most relevant information on top for the user.
 
-For this project, we are conducting IR to extract relevant ESG news data to reduce the noise found in large news datasets. This will help asset managers get news articles that are most ESG relevant, which will help asset managers make informed investment decisions in portfolio construction. 
+For this project, we are conducting IR to extract relevant ESG news data to reduce the noise found in large news datasets. This will help asset managers get ESG relevant news articles that will help asset managers make quick and well-informed investment decisions in portfolio construction.
 
 ### Key Components of IR
 
-- **Queries**: A query is a formal statement of information needs, such as a search string that users input into a search system.
-- **Documents**: In IR, documents can refer to any piece of textual information. They can be web pages, news articles, scientific papers, books, emails, or any other kind of textual data.
+- **Queries**: A query is a formal statement of information needs, such as a search string that users input into a search system. For the purpose of our project, we created unique ESG-relevant strings to identify news articles that are most ESG relevant to a particular industry.
+- **Documents**: In IR, documents can refer to any piece of textual information. They can be web pages, news articles, scientific papers, books, emails, or any other kind of textual data. For our project, the documents refer to the various news articles that we wish to retrieve for the user.
 - **Indexing**: Indexing is the process of creating a map between user queries and the documents stored in the database. It involves parsing the documents and building a searchable data structure, typically an index, from the terms found in the documents.
 - **Search Algorithm**: The search algorithm takes a user query and returns a ranked list of documents based on their relevance to the query. This ranking is often based on metrics like frequency of query terms in documents, document length, and other factors.
-- **Relevance**: Relevance measures how well a document corresponds to a query's intent. It is a critical aspect in the effectiveness of an IR system.
+- **Relevance**: Relevance measures how well a document corresponds to a query's intent. It is a critical aspect in the effectiveness of an IR system. For our project, we need to determine whether the retrieved results are ESG relevant to a given query, so we will measure our models performances through Success at K and Mean Reciprocal Rank (MRR) to determine how well is a model able to provide relevant information.
 
 
 # Dataset (Incomplete)
