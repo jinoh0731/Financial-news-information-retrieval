@@ -65,7 +65,7 @@ Graphic of Cleaned SASB Query Word Count:
 
 ## 1. Two Towers
 
-Two Towers is a dual encoder or bi-encoder architecture that employs two separate "towers" or neural networks to learn embeddings for queries and documents/candidates independently. The architecture allows for the nuanced capturing of semantic relationships between candiates and queries that is seen when we compute the cosine similarity score between each candidate and query pair, which allows us to get final rank values.
+Two Towers is a dual encoder or bi-encoder architecture that employs two separate "towers" or neural networks to learn embeddings for queries and documents/candidates independently. The architecture allows for the nuanced capturing of semantic relationships between candidates and queries that is seen when we compute the cosine similarity score between each candidate and query pair, which allows us to get final rank values.
    - Key Components:
       - Candidate: The candidate is the news article that excludes stop words.
       - Query: The query is the concatenation of all the SASB topics for a specific industry after excluding stop words. We chose this query formation methodology to have the best approximation of what is considered ESG for a given industry, regardless if it is "Major" or "Minor" ESG related. There are a total of 67 queries to represent the 67 total possible industries in our dataset.
