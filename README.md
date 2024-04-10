@@ -2,6 +2,9 @@
 
 # Introduction
 
+![image](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/123cded9-65f1-4e9c-b0db-3c55bc05dc7d)
+
+
 ## Problem Statement
 ESG (Environmental Social Governance) investing has been gaining an increasing interest over the years as more people wish to contribute positively to the environment while mitigating portfolio risks and generating long-term portfolio value. With a growing interest in ESG investing, asset managers need to rapidly analyze news related to ESG topics to gain timely insights and make informed decisions. However, there are unclear standards in what is ESG-relevant news as the unstructured nature of news articles makes quickly extracting relevant information difficult. Given that the stock market reflects news very quickly, the ability to efficiently and accurately extract relevant ESG news not only becomes a critical competitive advantage, but it can also help asset managers construct better ESG focused portfolios.
 
