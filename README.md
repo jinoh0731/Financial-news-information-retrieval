@@ -138,7 +138,7 @@ The `text-embedding-3-small` model is the newest embedding model, released on Ja
 - **Speed and Efficiency**: The model's reduced size allows for faster processing times and lower memory usage, which is beneficial for applications running on limited resources or requiring real-time response.
 
 - **Scalability**: Due to its efficiency and compact nature, `text-embedding-3-small` can easily scale to handle large volumes of text without significant resource expenditure.
-- 
+ 
 ![Screenshot 2024-04-09 at 9 45 32 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/1d7c119f-5d76-45e4-9b62-813d142e46f8)
 ![Screenshot 2024-04-09 at 9 45 44 PM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/22dbed0e-431f-4ee9-94a3-558ccb1727a5)
 
@@ -256,12 +256,13 @@ However, it's important to note that the `Text-embedding-3` model, while highly 
 # Resource
 Two Tower Resources:
 - https://www.tensorflow.org/recommenders/examples/basic_retrieval
+- https://blog.reachsumit.com/posts/2023/03/two-tower-model/
 
 BERT: 
 - https://www.tensorflow.org/text/tutorials/classify_text_with_bert
 - https://www.kaggle.com/models/google/bert
 
-RoBERTa
+RoBERTa:
 - https://huggingface.co/docs/transformers/en/model_doc/roberta
 
 MiniLM Resources:
