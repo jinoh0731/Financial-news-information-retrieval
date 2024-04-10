@@ -200,6 +200,9 @@ However, it's important to note that the `Text-embedding-3` model, while highly 
 
 # Gradio Demo
 
+![Screenshot 2024-04-10 at 12 56 54 AM](https://github.com/jinoh0731/Financial-news-information-retrieval/assets/111295393/af5cb345-340c-44bf-84cf-179296c4b956)
+
+
 # Limitation & Future Work for Improvement
 ## Limitation
 
