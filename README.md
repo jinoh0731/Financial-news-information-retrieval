@@ -49,6 +49,8 @@ The dataset is comprised of three different parts:
 o	INSERT PROMPT
 GPT4 would then label an article as “Major”, “Minor” or “No” ESG relevant, which we used as ground truth for the rest of our dataset.
 
+[GPT4 Prompt Code Demo](#GPT4/gpt4-pipeline.ipynb)
+
 
 During data pre-processing, we applied Spacy to remove any stop-words to end up with the following word count:
 Graphic of Cleaned News Articles Word Count:
