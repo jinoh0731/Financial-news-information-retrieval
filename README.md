@@ -116,7 +116,7 @@ The `RoBERTa` model was proposed in *RoBERTa: A Robustly Optimized BERT Pretrain
 
 
 ## 2. MiniLM (all-MiniLM-L6-v2)
-The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which is designed to produce state-of-the-art sentence embeddings. This model is a smaller, faster version of BERT and is optimized for generating embeddings that are particularly useful for tasks involving semantic similarity.
+The `all-MiniLM-L6-v2` is a model from the Sentence Transformers library, which is designed to produce state-of-the-art sentence embeddings. This model is a smaller, faster version of BERT and is optimized for generating embeddings that are particularly useful for tasks involving semantic similarity. The `all-mpnet-base-v2` model provides the best quality, while `all-MiniLM-L6-v2` is 5 times faster and still offers good quality.
 
 - **MiniLM Architecture**: MiniLM stands for Miniature Language Model. It focuses on reducing the model size while retaining a high level of performance. The model is designed by Microsoft and leverages knowledge distillation techniques where a smaller model is trained to reproduce the behavior of a much larger one.
 
